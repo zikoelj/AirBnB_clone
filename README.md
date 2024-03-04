@@ -266,8 +266,3 @@ e952b772-80a5-41e9-b728-6bc4dc5c21b4
 ## How to add Author file
 `Bash script for generating the list of authors in git repo`
 ```
-#!/bin/sh
-
-git shortlog -se \
-  | perl -spe 's/^\s+\d+\s+//' \
-  | sed -e '/^CommitSyncScript.*$/d' \
