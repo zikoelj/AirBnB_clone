@@ -7,7 +7,6 @@
 * [0x03 Installation](#0x03-Installation)
 * [0x04 Testing](#0x04-Testing)
 * [0x05 Usage](#0x05-Usage)
-* [0x06 Authors](#0x06-Authors)
 
 ## 0x01 Introduction
 
@@ -272,5 +271,3 @@ e952b772-80a5-41e9-b728-6bc4dc5c21b4
 git shortlog -se \
   | perl -spe 's/^\s+\d+\s+//' \
   | sed -e '/^CommitSyncScript.*$/d' \
-  > AUTHORS
-  ```
