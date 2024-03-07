@@ -10,6 +10,7 @@ class BaseModel:
             
         def __init__(self, *args, **kwargs):
             """Initializes a new instance of BaseModel."""
+            from models import storage 
             if kwargs:
                 for key, value in kwargs.items():
                     if key == 'created_at' or key == 'updated_at':
@@ -20,6 +21,7 @@ class BaseModel:
                 self.id = str(uuid4())
                 self.created_at = datetime.now()
                 self.updated_at = datetime.now()
+                storage.new(self)
 
         def __str__(self):
             """Returns a string representation of the BaseModel instance."""
@@ -28,7 +30,9 @@ class BaseModel:
 
         def save(self):
             """Updates the updated_at attribute with the current datetime."""
+            from models import storage
             self.updated_at = datetime.now()
+            storage.save()
         
         def to_dict(self):
             """Returns a dictionary representation of the BaseModel instance."""
