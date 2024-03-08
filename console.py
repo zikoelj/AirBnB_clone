@@ -14,6 +14,8 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 import re
+
+
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for the HBNB project."""
 
@@ -95,20 +97,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             del objs[key]
             storage.save()
-    
-    def do_all(self, command):
-        """Prints all string representation of all instances."""
-        objs = storage.all()
-        if not command:
-            print([str(obj) for obj in objs.values()])
-        else:
-            args = command.split()
-            try:
-                cls = eval(args[0])
-            except Exception:
-                print("** class doesn't exist **")
-                return
-            print([str(obj) for key, obj in objs.items() if key.startswith(args[0])])
 
     def do_update(self, command):
         """Updates an instance based on the class name and id."""
@@ -137,6 +125,30 @@ class HBNBCommand(cmd.Cmd):
             return
         setattr(objs[key], args[2], args[3])
         storage.save()
+
+    def do_all(self, command):
+        """Prints all string representation of all instances."""
+        objs = storage.all()
+        if not command:
+            print([str(obj) for obj in objs.values()])
+        else:
+            args = command.split()
+        try:
+            cls = eval(args[0])
+        except Exception:
+            print("** class doesn't exist **")
+            return
+        print([str(obj) for key, obj in objs.items()
+               if key.startswith(args[0])])
+
+    def do_count(self, command):
+        """Usage: count <class> or <class>.count().."""
+        argl = command.split()
+        count = 0
+        for obj in storage.all().values():
+            if argl[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':

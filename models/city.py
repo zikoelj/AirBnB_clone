@@ -8,3 +8,7 @@ class City(BaseModel):
 
     state_id = ""
     name = ""
+
+    def count():
+        """Retrieves the number of instances of the class."""
+        return len(storage.all(self))

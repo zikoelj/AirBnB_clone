@@ -9,8 +9,9 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
-    """Serializes instances to a JSON file and deserializes JSON file to instances."""
+    """Serializes instances to a JSON file and deserializes it to ins."""
 
     __file_path = "file.json"
     __objects = {}
@@ -27,32 +28,32 @@ class FileStorage:
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)."""
         with open(FileStorage.__file_path, mode='w', encoding='utf-8') as file:
-            json.dump({k: v.to_dict() for k, v in FileStorage.__objects.items()}, file)
+            json.dump({k: v.to_dict() for k, v in
+                       FileStorage.__objects.items()}, file)
 
     def reload(self):
-         """
-         that deserializes the data in our JSON file back
-         to the dictionary __objects
-         """
-         try:
-             with open(FileStorage.__file_path, encoding="utf-8") as file:
-                 desr_file = json.load(file)
-                 for v in desr_file.values():
-                     cls_name = v["__class__"]
-                     if cls_name == "BaseModel":
-                         self.new(BaseModel(**v))
-                     elif cls_name == "User":
-                         self.new(User(**v))
-                     elif cls_name == "State":
-                         self.new(State(**v))
-                     elif cls_name == "City":
-                         self.new(City(**v))
-                     elif cls_name == "Amenity":
-                         self.new(Amenity(**v))
-                     elif cls_name == "Place":
-                         self.new(Place(**v))
-                     elif cls_name == "Review":
-                         self.new(Review(**v))
-         except FileNotFoundError:
-             pass
-
+        """
+        that deserializes the data in our JSON file back
+        to the dictionary __objects
+        """
+        try:
+            with open(FileStorage.__file_path, encoding="utf-8") as file:
+                desr_file = json.load(file)
+                for v in desr_file.values():
+                    cls_name = v["__class__"]
+                    if cls_name == "BaseModel":
+                        self.new(BaseModel(**v))
+                    elif cls_name == "User":
+                        self.new(User(**v))
+                    elif cls_name == "State":
+                        self.new(State(**v))
+                    elif cls_name == "City":
+                        self.new(City(**v))
+                    elif cls_name == "Amenity":
+                        self.new(Amenity(**v))
+                    elif cls_name == "Place":
+                        self.new(Place(**v))
+                    elif cls_name == "Review":
+                        self.new(Review(**v))
+        except FileNotFoundError:
+            pass

@@ -6,6 +6,7 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 
+
 def main():
     """Chargement des objets depuis le stockage"""
     all_objs = storage.all()
@@ -37,12 +38,12 @@ def main():
     new_amenity.name = "Wifi"
     new_amenity.save()
     print(new_amenity)
-    
+
     """Création d'une nouvelle Place"""
     print("-- Create a new Place --")
     new_place = Place()
     new_place.city_id = new_city.id
-    new_place.user_id = "d780baa2-fda1-4189-aa15-415d8322ee02"  
+    new_place.user_id = "d780baa2-fda1-4189-aa15-415d8322ee02"
     new_place.name = "Cozy Apartment"
     new_place.description = "A cozy apartment in the heart of the city."
     new_place.number_rooms = 2
@@ -59,10 +60,11 @@ def main():
     print("-- Create a new Review --")
     new_review = Review()
     new_review.place_id = new_place.id
-    new_review.user_id = "d780baa2-fda1-4189-aa15-415d8322ee02"  
+    new_review.user_id = "d780baa2-fda1-4189-aa15-415d8322ee02"
     new_review.text = "Great place to stay!"
     new_review.save()
     print(new_review)
+
 
 if __name__ == "__main__":
     main()

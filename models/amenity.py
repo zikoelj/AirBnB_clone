@@ -7,3 +7,7 @@ class Amenity(BaseModel):
     """Represent an amenity."""
 
     name = ""
+
+    def count():
+        """Retrieves the number of instances of the class."""
+        return len(storage.all(self))
