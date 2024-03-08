@@ -5,7 +5,7 @@ from models.user import User
 
 class TestUser(unittest.TestCase):
     """Test cases for the User class"""
-    
+
     def setUp(self):
         """Set up testing environment"""
         self.user = User()
@@ -43,6 +43,7 @@ class TestUser(unittest.TestCase):
         prev_updated_at = self.user.updated_at
         self.user.save()
         self.assertNotEqual(prev_updated_at, self.user.updated_at)
+
 
 if __name__ == "__main__":
     unittest.main()

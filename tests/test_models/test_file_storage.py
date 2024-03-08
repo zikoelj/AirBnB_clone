@@ -43,5 +43,6 @@ class TestFileStorage(unittest.TestCase):
         obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.assertIn(obj_key, self.storage.all().keys())
 
+
 if __name__ == "__main__":
     unittest.main()

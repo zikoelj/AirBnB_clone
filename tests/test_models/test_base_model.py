@@ -5,12 +5,9 @@ this module is for Unittesting BaseModel Class
 
 import unittest
 import models
-"""import sys"""
 import os
-"""sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))"""
 from models.base_model import BaseModel
 from datetime import datetime
-"""from models.engine.file_storage import FileStorage"""
 import time
 
 
@@ -18,13 +15,11 @@ class TestBaseModel(unittest.TestCase):
     """
     This class to test BaseModel Class
     """
-    
     """def test_id(self):"""
     """Test that the id is a string"""
     """ model = BaseModel()"""
 
     """ self.assertIsInstance(model.id, str)"""
-    
     def test_str(self):
         """
         To test the __str__ method
