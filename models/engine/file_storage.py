@@ -2,7 +2,12 @@
 """Defines the FileStorage class."""
 import json
 from models.base_model import BaseModel
-
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes JSON file to instances."""
@@ -34,8 +39,20 @@ class FileStorage:
                  desr_file = json.load(file)
                  for v in desr_file.values():
                      cls_name = v["__class__"]
-                     if isinstance(cls_name, str) and type(eval(cls_name)) == type:
-                         self.new(eval(cls_name)(**v))
+                     if cls_name == "BaseModel":
+                         self.new(BaseModel(**v))
+                     elif cls_name == "User":
+                         self.new(User(**v))
+                     elif cls_name == "State":
+                         self.new(State(**v))
+                     elif cls_name == "City":
+                         self.new(City(**v))
+                     elif cls_name == "Amenity":
+                         self.new(Amenity(**v))
+                     elif cls_name == "Place":
+                         self.new(Place(**v))
+                     elif cls_name == "Review":
+                         self.new(Review(**v))
          except FileNotFoundError:
              pass
 
